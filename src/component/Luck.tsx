@@ -1,28 +1,6 @@
-import React,{useState} from 'react';
-import styled from 'styled-components'
+import React from 'react';
 
-const Messages = styled.div`
-	position:absolute;
-	left:50%;
-	top:30%;
-	transform:translate(-50%,50%);
-	font-size:24px;
-`
-const Share = styled.div`
-	position:absolute;
-	left:50%;
-	top:60%;
-	transform:translate(-50%,50%);
-	border:1px solid #FEE500;
-	background-color: #FEE500;
-	border-radius:5px;
-	padding: 5px 10px;
-	cursor:pointer;
-`
-const Luck = styled.div`
-
-`
-function Message(){
+function Luck() {
 	const scripts = [
 		"본인이 인지하는 것 이상으로 순간 순간 뜨겁게 타오르고, 열정을 쏟아 붓는 대단한 기세를 보여주는 시기입니다. 무엇이든 하나를 시작하면 끝을 볼 만큼 의욕이 넘치는 한 해가 되겠습니다. 자존심이 센 성격의 소유자이기에 욱하는 모습도 보일 수 있겠습니다. 덕분에 약간 덤벙대고 평상시 귀찮은 일은 미루는 편이지만, 한번 손을 대면 누구보다 빠르고, 정교하게 처신을 하려 하겠습니다.",
 		"어떠한 일에도 쉽게 흔들리지 않을 만큼의 부동심이 살아나는 덕분에 자기 중심이 쉽게 흐트러지지 않는 강한 정신력을 발휘하는 시기입니다. 한번 하고자 마음 먹은 일에 대해선 방향을 바꾸지 않으려 합니다. 꾸준히 이어가려고 하는 성격을 지니고 있어서 올곧고, 강직하다는 평가를 들을 수도 있겠네요. 또한, 일반적으로 냉철하고, 현실적인 이해가 빠르기 때문에 판단과 결단도 올바르게 잘 결정할 수 있습니다. 반복적인 현실에 대해 지루함을 잘 느끼진 않지만, 지루함을 느낀다 하더라도 쉽게 자신의 터전을 옮기려 하지는 않습니다.",
@@ -35,19 +13,15 @@ function Message(){
 		"하늘을 밝게 비추는 햇살처럼 사람의 마음을 포근하게 감싸주고, 정감 있게 사랑을 대할 수 있는 본인의 장점이 보이는 시기입니다. 그 덕분에 주변에 사람이 따르고, 넉넉하고 여유로운 모습으로 보여지게 됩니다. 이에 많은 고민 상담이 들어오거나, 당신과 함께 시간을 보내려는 사람이 많을 수 있습니다. 간혹 시작하면 가급적 끝을 봐야 직성이 풀릴 만큼 열정적인 모습도 보이겠습니다. 열정적인 사랑의 감정도 생길 수 있겠습니다.",
 		"깊이를 알 수 없는 심지와 넓은 포용력을 지니고 있는 심성은 본인이 가지고 있는 주요하고 유용한 성격입니다. 심지가 깊고 포용력이 넓다는 것은 사소한 일에 연연하지 않고, 대범하게 생각하면서 자신에게 주어진 상황을 극복해갈 수 있다는 걸 의미하는데, 덕분에 어렵고 급박한 상황에서도 여유를 잃지 않는 한 해가 되겠습니다. 하지만, 투명한 듯 하면서도 왠지 감추는 것이 많은 듯한 느낌을 주변에 전달해주는 부분이 본인에 대한 신뢰감을 저조하게 만들 수 있습니다. 침묵과 솔직함의 경계에서 생각이 많을 수도 있습니다. 리더십이 돋보이는 한 해가 될 수 있겠습니다.",
 	]
-	function random():number{
-		return  Math.floor(Math.random() * scripts.length);
-	}
-	const [randomSciprt,setRandomScripts] = useState(scripts[random()]);
+	
 	return(
 		<>
-			<Messages>새해 복 많이 받으세요 etc...</Messages>
-			<Luck>{randomSciprt}</Luck>
-			<Share>다른친구에게도 보내기</Share>
 			
 		</>
 	)
 }
 
 
-export default Message;
+
+
+export default Luck;
