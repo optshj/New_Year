@@ -1,5 +1,9 @@
 import React,{useState} from 'react';
 import styled from 'styled-components'
+import Modal from 'react-modal';
+
+import Button from './buttons/Button';
+import Luck from './Luck';
 
 const Messages = styled.div`
 	position:absolute;
@@ -8,43 +12,56 @@ const Messages = styled.div`
 	transform:translate(-50%,50%);
 	font-size:24px;
 `
-const Share = styled.div`
-	position:absolute;
-	left:50%;
-	top:60%;
-	transform:translate(-50%,50%);
-	border:1px solid #FEE500;
-	background-color: #FEE500;
-	border-radius:5px;
-	padding: 5px 10px;
-	cursor:pointer;
+const ButtonContainer = styled.div`
+	display:flex;
+	align-items:center;
+	justify-contents:center;
+	margin:0 auto;
 `
-const Luck = styled.div`
+const ButtonGaps = styled.div`
+	margin:0 10px;
+`
 
-`
 function Message(){
-	const scripts = [
-		"본인이 인지하는 것 이상으로 순간 순간 뜨겁게 타오르고, 열정을 쏟아 붓는 대단한 기세를 보여주는 시기입니다. 무엇이든 하나를 시작하면 끝을 볼 만큼 의욕이 넘치는 한 해가 되겠습니다. 자존심이 센 성격의 소유자이기에 욱하는 모습도 보일 수 있겠습니다. 덕분에 약간 덤벙대고 평상시 귀찮은 일은 미루는 편이지만, 한번 손을 대면 누구보다 빠르고, 정교하게 처신을 하려 하겠습니다.",
-		"어떠한 일에도 쉽게 흔들리지 않을 만큼의 부동심이 살아나는 덕분에 자기 중심이 쉽게 흐트러지지 않는 강한 정신력을 발휘하는 시기입니다. 한번 하고자 마음 먹은 일에 대해선 방향을 바꾸지 않으려 합니다. 꾸준히 이어가려고 하는 성격을 지니고 있어서 올곧고, 강직하다는 평가를 들을 수도 있겠네요. 또한, 일반적으로 냉철하고, 현실적인 이해가 빠르기 때문에 판단과 결단도 올바르게 잘 결정할 수 있습니다. 반복적인 현실에 대해 지루함을 잘 느끼진 않지만, 지루함을 느낀다 하더라도 쉽게 자신의 터전을 옮기려 하지는 않습니다.",
-		"온화하고, 부드럽게 점진적으로 멀리 자신의 존재를 퍼뜨림에도 눈에 띄지 않게 영역을 확장해가는 성향이 도드라지는 한 해가 되겠습니다. 그 덕분에 독특한 개성이 잘 보이지는 않지만, 지혜롭고 차분한 장점 덕에 시간이 지날수록 빛을 볼 수 있는 시기가 될 것입니다. 때로는 행동이 너무 느리다고 평가 받을 만큼 게을러 보이기도 합니다. 그러나, 이는 자신의 능력에 대한 정확한 판단을 통해 여유를 부리는 것이니, 결과적으로는 다른 사람도 부러워하는 성과를 이룰 수 있겠습니다.",
-		"자신의 안에서 변화를 지켜보고 생명을 키워가듯이 넉넉하고 여유로운 품성이 잘 드러나는 한 해가 되겠습니다. 성실하고 근면한 기본적인 성품 덕분에 평상시 좋은 인상을 주변에 심어줄 수 있습니다. 올해는 한두 번 정도 본인의 성향과 다르게 유독 자신의 것에 대한 소유욕이 굉장히 강하게 표출되기도 합니다. 마치 진귀한 보석을 찾기 위해 오랜 노력과 공을 들였기에 꼭 그것을 캐내야 한다는 의지가 보여집니다.",
-		"매우 아끼고 절약하려는 성향이 나타날 수 있는 시기입니다. 필요 없다고 생각되는 지출에 매우 민감하여 주위에서 눈치를 받는 경우도 있으나 이는 자기 관리가 매우 좋다고도 볼 수 있습니다. 긴 시간을 일관되게 노력하고 성실하게 본분을 다할 수 있을 만큼 지구력도 돋보이겠습니다. 이타적인 성향도 나타나게 되며 자신이 희생하고 타인이 행복할 수 있다면 그것 만으로도 만족감을 느끼게 됩니다. 남을 행복하게 하는 것은 향수를 뿌리는 것과 같아서 뿌릴 때 자신에게도 몇 방울은 튄답니다. 본인이 생각하는 것 이상으로 풍부한 상상력을 현실로 나타내고자 하는 의욕이 넘치는 시기이기도 합니다.",
-		"커다란 변화를 만들기보다 일정한 범위 내에서 조금씩 확장하려는 성향을 보이는 시기입니다. 강한 난관에서는 피해갈 줄 알고, 주변의 사소한 변화도 미리 감지해서 그에 알맞게 대응할 수 있는 재치와 융통성을 모두 겸비하고 있으니, 복합적인 상황에서도 순탄한 해결점을 찾는 대담함이 돋보이는 한 해가 되겠습니다. 현재에 잘 순응해가는 해 입니다.",
-		"어쩔 때는 공기 중에 흩어진 수분처럼 소극적이고, 자신을 감추려고 하지만, 어쩔 때는 장마철의 소나기처럼 세차고 거센 성격을 드러내는 성품이 나타날 수 있는 한 해 입니다. 올해의 성향에서 알 수 있듯이 여러 가지 모습으로 자신을 드러낼 수 있는 능력을 갖추게 되며 성격 또한, 복합적으로 다양한 개성을 한꺼번에 나타날 수 있는 시기입니다. 독선적인 면이 보일 수도 있습니다.",
-		"정겹고 온순한 듯 하면서도 언제든지 커다란 꿈을 펼칠 준비가 되어있는 외유내강의 모습이 돋보이는 한 해가 되겠습니다. 무엇이든 자신에게 주어진 상황에서 발전을 모색하고 진보하기 위해 노력하는 성실한 성격과 의지력이 여느 해 보다 더 돋보이게 됩니다. 간혹 잠재되어 있던 직선적이고, 물러섬이 없는 강력한 기세가 보이기도 합니다. 올해는 유독 강했다가 유순했다가 또 그 반대로 하는 등 성향과는 다소 떨어진 모습을 보입니다.",
-		"하늘을 밝게 비추는 햇살처럼 사람의 마음을 포근하게 감싸주고, 정감 있게 사랑을 대할 수 있는 본인의 장점이 보이는 시기입니다. 그 덕분에 주변에 사람이 따르고, 넉넉하고 여유로운 모습으로 보여지게 됩니다. 이에 많은 고민 상담이 들어오거나, 당신과 함께 시간을 보내려는 사람이 많을 수 있습니다. 간혹 시작하면 가급적 끝을 봐야 직성이 풀릴 만큼 열정적인 모습도 보이겠습니다. 열정적인 사랑의 감정도 생길 수 있겠습니다.",
-		"깊이를 알 수 없는 심지와 넓은 포용력을 지니고 있는 심성은 본인이 가지고 있는 주요하고 유용한 성격입니다. 심지가 깊고 포용력이 넓다는 것은 사소한 일에 연연하지 않고, 대범하게 생각하면서 자신에게 주어진 상황을 극복해갈 수 있다는 걸 의미하는데, 덕분에 어렵고 급박한 상황에서도 여유를 잃지 않는 한 해가 되겠습니다. 하지만, 투명한 듯 하면서도 왠지 감추는 것이 많은 듯한 느낌을 주변에 전달해주는 부분이 본인에 대한 신뢰감을 저조하게 만들 수 있습니다. 침묵과 솔직함의 경계에서 생각이 많을 수도 있습니다. 리더십이 돋보이는 한 해가 될 수 있겠습니다.",
-	]
-	function random():number{
-		return  Math.floor(Math.random() * scripts.length);
+	const [isModalOpen,setIsModalOpen] = useState(false);
+	
+	const openModal = () => {
+		setIsModalOpen(true);
 	}
-	const [randomSciprt,setRandomScripts] = useState(scripts[random()]);
+	const closeModal = () => {
+		setIsModalOpen(false);
+	}
+	
 	return(
 		<>
 			<Messages>새해 복 많이 받으세요 etc...</Messages>
-			<Luck>{randomSciprt}</Luck>
-			<Share>다른친구에게도 보내기</Share>
-			
+			<ButtonContainer>
+				<ButtonGaps>
+					<Button color='#FEE500'>다른친구에게도 보내기</Button>
+				</ButtonGaps>
+				<ButtonGaps onClick ={openModal}>
+					<Button color='gray'>신년운세 보기</Button>
+				</ButtonGaps>
+			</ButtonContainer>
+			{isModalOpen && (
+				<Modal
+				isOpen={isModalOpen}
+				onRequestClose={closeModal}
+				style={{
+					display:'flex',
+					width: '500px',
+					height: '500px',
+					borderRadius: '5px',
+					margin: '0 auto',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
+			    >
+					<Luck/>
+				</Modal>
+				)
+		
+		}
 		</>
 	)
 }

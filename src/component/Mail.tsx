@@ -1,12 +1,14 @@
 import React,{ useState } from 'react';
 import styled,{keyframes} from 'styled-components'
+
 import {ReactComponent as Mailimg} from '../assets/img/mail.svg';
+
 import Message from './Message';
-import Back from './Back';
+import Back from './buttons/Back';
 
 const Background = styled.div`
 	position:relative;
-	width:500px;
+	width:600px;
 	height:100vh;
 	display: flex;
   	align-items: center;
@@ -37,7 +39,6 @@ const Text = styled.div`
 `
 const MailBox = styled.div`
 	animation: ${upDown} 2s ease-in-out infinite;
-	
 	width:500px;
 	height:auto;
 	position:absolute;

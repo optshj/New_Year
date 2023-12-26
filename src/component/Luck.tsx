@@ -1,4 +1,10 @@
-import React from 'react';
+import React,{useState} from 'react';
+import styled from 'styled-components';
+
+
+const Script = styled.div`
+
+`
 
 function Luck() {
 	const scripts = [
@@ -13,15 +19,16 @@ function Luck() {
 		"하늘을 밝게 비추는 햇살처럼 사람의 마음을 포근하게 감싸주고, 정감 있게 사랑을 대할 수 있는 본인의 장점이 보이는 시기입니다. 그 덕분에 주변에 사람이 따르고, 넉넉하고 여유로운 모습으로 보여지게 됩니다. 이에 많은 고민 상담이 들어오거나, 당신과 함께 시간을 보내려는 사람이 많을 수 있습니다. 간혹 시작하면 가급적 끝을 봐야 직성이 풀릴 만큼 열정적인 모습도 보이겠습니다. 열정적인 사랑의 감정도 생길 수 있겠습니다.",
 		"깊이를 알 수 없는 심지와 넓은 포용력을 지니고 있는 심성은 본인이 가지고 있는 주요하고 유용한 성격입니다. 심지가 깊고 포용력이 넓다는 것은 사소한 일에 연연하지 않고, 대범하게 생각하면서 자신에게 주어진 상황을 극복해갈 수 있다는 걸 의미하는데, 덕분에 어렵고 급박한 상황에서도 여유를 잃지 않는 한 해가 되겠습니다. 하지만, 투명한 듯 하면서도 왠지 감추는 것이 많은 듯한 느낌을 주변에 전달해주는 부분이 본인에 대한 신뢰감을 저조하게 만들 수 있습니다. 침묵과 솔직함의 경계에서 생각이 많을 수도 있습니다. 리더십이 돋보이는 한 해가 될 수 있겠습니다.",
 	]
+	function random():number{
+		return  Math.floor(Math.random() * scripts.length);
+	}
+	const [randomSciprt,setRandomScripts] = useState(scripts[random()]);
 	
 	return(
 		<>
-			
+			<Script>{randomSciprt}</Script>
 		</>
 	)
 }
-
-
-
 
 export default Luck;
