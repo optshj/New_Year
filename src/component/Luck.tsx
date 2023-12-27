@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 
 const Script = styled.div`
-
+	&:before {
+    content: '\u00a0';
+	}
 `
 
 function Luck() {

@@ -1,10 +1,10 @@
 import React,{ useState } from 'react';
 import styled,{keyframes} from 'styled-components'
 
-import {ReactComponent as Mailimg} from '../assets/img/mail.svg';
+import { ReactComponent as Mailimg } from '../assets/img/mail.svg';
 
 import Message from './Message';
-import Back from './buttons/Back';
+import { Back } from './buttons/Button';
 
 const Background = styled.div`
 	position:relative;
