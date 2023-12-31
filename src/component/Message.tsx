@@ -48,44 +48,51 @@ const BackButton = styled.div`
 `;
 
 function Message() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+	console.log(window.Kakao)
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+    const openModal = () => {
+  		setIsModalOpen(true);
+    };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+    //카카오톡으로 공유 메시지 보내는 버튼
+    const shareKakao = () => {
+		window.Kakao.Share.sendScrap({
+		  requestUrl: 'https://developers.kakao.com',
+		  templateId: 102392,
+		});
+	}
+	return(
+		<>
+		  <Messages>
+			  <Comment/>
+		  </Messages>
+		  <ButtonContainer>
+			<ButtonGaps onClick={shareKakao}>
+			  <Button color='#FEE500'>다른 친구에게도 보내기</Button>
+			</ButtonGaps>
+			<ButtonGaps onClick={openModal}>
+			  <Button color='gray'>신년운세 보기</Button>
+			</ButtonGaps>
+		  </ButtonContainer>
 
-  return (
-    <>
-      <Messages>
-		  <Comment/>
-	  </Messages>
-      <ButtonContainer>
-        <ButtonGaps>
-          <Button color='#FEE500'>다른 친구에게도 보내기</Button>
-        </ButtonGaps>
-        <ButtonGaps onClick={openModal}>
-          <Button color='gray'>신년운세 보기</Button>
-        </ButtonGaps>
-      </ButtonContainer>
+		  {isModalOpen && (
+			<CustomModal
+			  isOpen={isModalOpen}
+			  onRequestClose={closeModal}
+			>
+			  <BackButton onClick={closeModal}>
+				<Back/>
+			  </BackButton>
 
-      {isModalOpen && (
-        <CustomModal
-          isOpen={isModalOpen}
-          onRequestClose={closeModal}
-        >
-          <BackButton onClick={closeModal}>
-            <Back/>
-          </BackButton>
-
-          <Luck/>
-        </CustomModal>
-      )}
-    </>
-  );
+			  <Luck/>
+			</CustomModal>
+		  )}
+		</>
+    );
 }
 
 export default Message;
