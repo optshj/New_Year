@@ -10,9 +10,11 @@ import Comment from './Comment';
 const Messages = styled.div`
   position: absolute;
   left: 50%;
-  top: 30%;
+  top: 20%;
   font-size: 24px;
   transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
 `;
 
 // 버튼 정렬
@@ -61,7 +63,7 @@ function Message() {
     //카카오톡으로 공유 메시지 보내는 버튼
     const shareKakao = () => {
 		window.Kakao.Share.sendScrap({
-		  requestUrl: 'https://developers.kakao.com',
+		  requestUrl: 'https://optshj.github.io/',
 		  templateId: 102392,
 		});
 	}
@@ -72,7 +74,7 @@ function Message() {
 		  </Messages>
 		  <ButtonContainer>
 			<ButtonGaps onClick={shareKakao}>
-			  <Button color='#FEE500'>다른 친구에게도 보내기</Button>
+			  <Button color='#FEE500'>다른 사람에게도 보내기</Button>
 			</ButtonGaps>
 			<ButtonGaps onClick={openModal}>
 			  <Button color='gray'>신년운세 보기</Button>
