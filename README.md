@@ -3,7 +3,7 @@
 ## 프로젝트 실행
     npm start
 ## 사이트 주소
-[HAPPY NEW YEAR](https://www.optshj.github.io)
+[HAPPY NEW YEAR](https://optshj.github.io/)
 
 ## Commit Convention
   
